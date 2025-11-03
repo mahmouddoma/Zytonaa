@@ -1,1 +1,107 @@
-/* You can add global styles to this file, and also import other style files */
+/* خط عربي لطيف */
+@import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap");
+
+:root {
+  --bg: #0f1412;
+  --card: #171c1a;
+  --ink: #e8f2ec;
+  --muted: #9fb3a8;
+
+  --brand: #1b8e4b;
+  --brand-ink: #145f34;
+  --accent: #f8a116; /* برتقالي */
+  --ring: rgba(27, 142, 75, 0.25);
+
+  --radius: 18px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Tajawal", system-ui, -apple-system, Segoe UI, Roboto,
+    "Helvetica Neue", Arial, "Noto Sans Arabic", sans-serif;
+  background: radial-gradient(
+    1200px 600px at 70% -200px,
+    #1a2320 0%,
+    var(--bg) 60%
+  );
+  color: var(--ink);
+}
+
+/* أدوات سريعة */
+.container-narrow {
+  max-width: 1140px;
+}
+.card-zy {
+  background: var(--card);
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.btn-brand {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #fff;
+}
+.btn-brand:hover {
+  background: var(--brand-ink);
+  border-color: var(--brand-ink);
+}
+.badge-accent {
+  background: var(--accent);
+  color: #1b1b1b;
+}
+
+.section-title {
+  font-weight: 800;
+  font-size: clamp(22px, 2.4vw, 34px);
+  margin-bottom: 1rem;
+}
+.lead-muted {
+  color: var(--muted);
+}
+
+/* روابط الناف */
+.navbar-dark .nav-link {
+  color: #e7efe9;
+  opacity: 0.9;
+}
+.navbar-dark .nav-link.active,
+.navbar-dark .nav-link:hover {
+  color: #fff;
+  opacity: 1;
+}
+
+.img-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.hero {
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.55)),
+    url("assets/images/5dd77036e1330b5714665caa9447ca68.jpg") center/cover
+      no-repeat;
+  border-radius: var(--radius);
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  padding: clamp(16px, 4vw, 48px);
+}
+
+.footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background: #0d1210;
+}
+
+.form-control::placeholder {
+  color: #a4b7ae;
+}
