@@ -1,0 +1,116 @@
+/* ===== About Section Base ===== */
+.about-section {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+/* عنوان ووصف */
+.section-title {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #e8f2ec;
+}
+
+.about-subtitle {
+  max-width: 700px;
+  font-size: 0.98rem;
+  color: #a8bdb3;
+  line-height: 1.7;
+}
+
+.brand-text {
+  color: #2ea35f;
+  font-weight: 700;
+}
+
+/* ===== Mission & Vision Cards ===== */
+.mission-vision-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+  color: #e8f2ec;
+  display: flex;
+}
+
+.mission-card {
+  background: linear-gradient(
+    135deg,
+    rgba(46, 163, 95, 0.12),
+    rgba(26, 36, 33, 0.96)
+  );
+  border-color: rgba(46, 163, 95, 0.28);
+}
+
+.vision-card {
+  background: linear-gradient(
+    135deg,
+    rgba(248, 161, 22, 0.12),
+    rgba(26, 36, 33, 0.96)
+  );
+  border-color: rgba(248, 161, 22, 0.28);
+}
+
+.mission-vision-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.22);
+}
+
+/* ===== Icons ===== */
+.icon-wrapper {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: rgba(46, 163, 95, 0.16);
+  border: 1px solid rgba(46, 163, 95, 0.35);
+}
+
+.icon-main {
+  font-size: 1.5rem;
+  color: #2ea35f;
+}
+
+.icon-wrapper-alt {
+  background: rgba(248, 161, 22, 0.16);
+  border-color: rgba(248, 161, 22, 0.35);
+}
+
+.icon-alt {
+  font-size: 1.5rem;
+  color: #f8a116;
+}
+
+/* ===== Text Utilities ===== */
+.lead-muted {
+  color: #c2cec7;
+  font-size: 0.95rem;
+}
+
+/* ===== Responsive Tweaks ===== */
+@media (max-width: 767.98px) {
+  .about-section {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .card-zy {
+    padding: 1.5rem !important;
+  }
+
+  .mission-vision-card {
+    padding: 1.1rem !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .card-zy {
+    padding: 3rem 3.2rem !important;
+  }
+}

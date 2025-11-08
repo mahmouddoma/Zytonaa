@@ -8,4 +8,15 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
-export class NavbarComponent {}
+export class NavbarComponent {
+  constructor() {
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('.custom-navbar');
+      if (window.scrollY > 20) {
+        nav?.classList.add('scrolled');
+      } else {
+        nav?.classList.remove('scrolled');
+      }
+    });
+  }
+}

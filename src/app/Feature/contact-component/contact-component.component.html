@@ -1,44 +1,70 @@
-<div class="container container-narrow">
-    <div class="row g-4">
-        <div class="col-12 col-lg-6">
-            <div class="card-zy p-4 h-100">
-                <h2 class="section-title">تواصل معنا</h2>
-                <form (ngSubmit)="submit()" #f="ngForm" class="row g-3">
-                    <div class="col-12">
-                        <label class="form-label">الاسم</label>
-                        <input class="form-control" name="name" [(ngModel)]="model.name" required />
-                    </div>
-                    <div class="col-12">
-                        <label class="form-label">البريد الإلكتروني</label>
-                        <input class="form-control" type="email" name="email" [(ngModel)]="model.email" required />
-                    </div>
-                    <div class="col-12">
-                        <label class="form-label">الرسالة</label>
-                        <textarea rows="4" class="form-control" name="message" [(ngModel)]="model.message"
-                            required></textarea>
-                    </div>
-                    <div class="col-12 d-flex gap-2">
-                        <button class="btn btn-brand" [disabled]="f.invalid">إرسال</button>
-                        <button type="reset" class="btn btn-outline-light">إلغاء</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+<section class="contact-section py-5">
+    <div class="container container-narrow">
+        <div class="row g-4 align-items-stretch">
+            <!-- Form -->
+            <div class="col-12 col-lg-6">
+                <div class="card-zy p-4 p-md-4 h-100 d-flex flex-column">
+                    <h2 class="section-title mb-3">تواصل معنا</h2>
+                    <p class="contact-intro lead-muted mb-4">
+                        يسعدنا تواصلك معنا لأي استفسار حول منتجات زيتونة أو طلب عروض خاصة للمزارع والتوزيع.
+                    </p>
 
-        <div class="col-12 col-lg-6">
-            <div class="card-zy p-4 h-100">
-                <h5 class="fw-bold mb-3">معلومات التواصل</h5>
-                <ul class="list-unstyled lead-muted">
-                    <li class="mb-2"><i class="bi bi-geo-alt"></i> جدة، المملكة العربية السعودية</li>
-                    <li class="mb-2"><i class="bi bi-telephone"></i> 966-5X-XXX-XXXX+</li>
-                    <li class="mb-2"><i class="bi bi-envelope"></i>
-                        <a href="mailto:sales@zytonaa.com">sales&#64;zytonaa.com</a>
-                    </li>
-                </ul>
-                <div class="ratio ratio-16x9 rounded overflow-hidden">
-                    <iframe src="https://maps.google.com/maps?q=jeddah&t=&z=11&ie=UTF8&iwloc=&output=embed"></iframe>
+                    <form (ngSubmit)="submit()" #f="ngForm" class="row g-3 mt-auto">
+                        <div class="col-12">
+                            <label class="form-label">الاسم</label>
+                            <input class="form-control" name="name" [(ngModel)]="model.name" required
+                                placeholder="الاسم الكامل" />
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">البريد الإلكتروني</label>
+                            <input class="form-control" type="email" name="email" [(ngModel)]="model.email" required
+                                placeholder="name@example.com" />
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">الرسالة</label>
+                            <textarea rows="4" class="form-control" name="message" [(ngModel)]="model.message" required
+                                placeholder="اكتب رسالتك هنا..."></textarea>
+                        </div>
+
+                        <div class="col-12 d-flex flex-wrap gap-2">
+                            <button class="btn btn-brand" [disabled]="f.invalid">
+                                إرسال
+                            </button>
+                            <button type="reset" class="btn btn-outline-secondary">
+                                إلغاء
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Info + Map -->
+            <div class="col-12 col-lg-6">
+                <div class="card-zy p-4 p-md-4 h-100 d-flex flex-column">
+                    <h5 class="fw-bold mb-3">معلومات التواصل</h5>
+                    <ul class="list-unstyled lead-muted mb-3">
+                        <li class="mb-2">
+                            <i class="bi bi-geo-alt me-1"></i> جدة، المملكة العربية السعودية
+                        </li>
+                        <li class="mb-2">
+                            <i class="bi bi-telephone me-1"></i> +966-5X-XXX-XXXX
+                        </li>
+                        <li class="mb-2">
+                            <i class="bi bi-envelope me-1"></i>
+                            <a href="mailto:sales@zytonaa.com" class="contact-link">
+                                sales&#64;zytonaa.com
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="ratio ratio-16x9 rounded overflow-hidden mt-auto">
+                        <iframe src="https://maps.google.com/maps?q=jeddah&t=&z=11&ie=UTF8&iwloc=&output=embed"
+                            style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>

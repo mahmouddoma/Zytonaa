@@ -1,19 +1,35 @@
-<div class="container container-narrow">
+<div class="container container-narrow products-section py-5">
     <h2 class="section-title">منتجاتنا</h2>
-    <p class="lead-muted mb-4">مجموعة أسمدة ورقية وجذرية وعناصر صغرى ومحفزات نمو.</p>
+    <p class="lead-muted mb-4">
+        مجموعة أسمدة ورقية وجذرية وعناصر صغرى ومحفزات نمو.
+    </p>
 
     <div class="row g-4">
-        <div class="col-12 col-md-4" *ngFor="let p of products">
-            <div class="card-zy h-100 p-3">
-                <div class="position-relative" style="height:200px;">
-                    <img [src]="p.img" class="img-cover" [alt]="p.name">
-                    <span *ngIf="p.tag" class="badge badge-accent position-absolute top-0 end-0 m-2">{{p.tag}}</span>
+        <div class="col-12 col-sm-6 col-md-4" *ngFor="let p of products">
+            <div class="card-zy product-card h-100 d-flex flex-column">
+                <div class="product-image-wrapper position-relative">
+                    <img [src]="p.img" class="img-cover" [alt]="p.name" />
+                    <span *ngIf="p.tag" class="badge badge-accent position-absolute top-0 end-0 m-2">
+                        {{ p.tag }}
+                    </span>
                 </div>
-                <h5 class="fw-bold mt-3 mb-2">{{p.name}}</h5>
-                <p class="lead-muted">{{p.desc}}</p>
-                <div class="d-flex justify-content-between">
-                    <button class="btn btn-sm btn-outline-light">تفاصيل</button>
-                    <button class="btn btn-sm btn-brand">اطلب عرض سعر</button>
+
+                <div class="product-body d-flex flex-column flex-grow-1">
+                    <h5 class="fw-bold mt-3 mb-2 product-title">
+                        {{ p.name }}
+                    </h5>
+                    <p class="lead-muted product-desc flex-grow-1">
+                        {{ p.desc }}
+                    </p>
+
+                    <div class="d-flex justify-content-between gap-2 mt-3">
+                        <button class="btn btn-sm btn-outline-light flex-fill">
+                            تفاصيل
+                        </button>
+                        <button class="btn btn-sm btn-brand flex-fill">
+                            اطلب عرض سعر
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

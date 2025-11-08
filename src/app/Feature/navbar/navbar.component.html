@@ -1,9 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-dark" style="background:#0c110f;">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-navbar">
     <div class="container container-narrow">
         <a class="navbar-brand d-flex align-items-center gap-2" routerLink="/">
             <img src="../../../assets/images/logo.jpg" width="34" height="34" alt="Zytonaa">
-            <strong>Zytonaa</strong>
-            <span class="badge ms-2 badge-accent">Zيتونة</span>
+            <strong>زيتونة</strong>
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navZy">
@@ -12,16 +11,29 @@
 
         <div class="collapse navbar-collapse" id="navZy">
             <ul class="navbar-nav ms-auto gap-lg-2">
-                <li class="nav-item"><a routerLink="/" routerLinkActive="active"
-                        [routerLinkActiveOptions]="{exact:true}" class="nav-link">الرئيسية</a></li>
-                <li class="nav-item"><a routerLink="/about" routerLinkActive="active" class="nav-link">من نحن</a></li>
-                <li class="nav-item"><a routerLink="/products" routerLinkActive="active" class="nav-link">منتجاتنا</a>
+                <li class="nav-item">
+                    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+                        class="nav-link">الرئيسية</a>
                 </li>
-                <li class="nav-item"><a routerLink="/news" routerLinkActive="active" class="nav-link">الأخبار</a></li>
-                <li class="nav-item"><a routerLink="/contact" routerLinkActive="active" class="nav-link">تواصل معنا</a>
+                <li class="nav-item">
+                    <a routerLink="/about" routerLinkActive="active" class="nav-link">من نحن</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/products" routerLinkActive="active" class="nav-link">منتجاتنا</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/news" routerLinkActive="active" class="nav-link">الأخبار</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/contact" routerLinkActive="active" class="nav-link">تواصل معنا</a>
                 </li>
             </ul>
-            <a routerLink="/contact" class="btn btn-sm btn-brand ms-3">اطلب عرض سعر</a>
+
+            <a href="https://wa.me/966XXXXXXXXX" target="_blank"
+                class="btn btn-sm btn-whatsapp ms-3 d-flex align-items-center gap-2">
+                اطلب الآن
+                <i class="bi bi-whatsapp"></i>
+            </a>
         </div>
     </div>
 </nav>
