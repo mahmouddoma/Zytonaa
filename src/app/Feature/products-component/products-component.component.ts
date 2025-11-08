@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { ContentService } from '../../shared/content.service';
+
 type Product = {
   id: number;
   name: string;
@@ -14,43 +16,19 @@ type Product = {
   styleUrl: './products-component.component.css',
 })
 export class ProductsComponentComponent {
-  products: Product[] = [
-    {
-      id: 1,
-      name: 'Zy-Grow 20-20-20',
-      desc: 'NPK متوازن للنمو الخضري المبكر.',
-      tag: 'الأكثر طلبًا',
-      img: 'assets/images/product1.jpg',
-    },
-    {
-      id: 2,
-      name: 'Zy-Cal Boron',
-      desc: 'كالسيوم + بورون لتقوية الخلايا وتحسين العقد.',
-      img: 'assets/images/product2.jpg',
-    },
-    {
-      id: 3,
-      name: 'Zy-Micro Mix',
-      desc: 'عناصر صغرى مخلبة لرفع كفاءة التمثيل.',
-      img: 'assets/images/product3.jpg',
-    },
-    {
-      id: 4,
-      name: 'Zy-Root Booster',
-      desc: 'منشّط جذور لزيادة الامتصاص.',
-      img: 'assets/images/product1.jpg',
-    },
-    {
-      id: 5,
-      name: 'Zy-K Potassium',
-      desc: 'بوتاسيوم عالي للجودة وتحسين التلوّن.',
-      img: 'assets/images/product2.jpg',
-    },
-    {
-      id: 6,
-      name: 'Zy-Amino',
-      desc: 'أحماض أمينية لتحمل الإجهاد.',
-      img: 'assets/images/product3.jpg',
-    },
-  ];
+  products: Product[] = [];
+  title = '';
+  subtitle = '';
+
+  constructor(private content: ContentService) {
+    this.content
+      .getSection<Product[]>('products')
+      .subscribe((p) => (this.products = p));
+    this.content.getSection<any>('common').subscribe((c) => {
+      const sec = c?.sections?.products;
+      this.title = sec?.title || 'منتجاتنا';
+      this.subtitle =
+        sec?.subtitle || 'مجموعة أسمدة ورقية وجذرية وعناصر صغرى ومحفزات نمو.';
+    });
+  }
 }

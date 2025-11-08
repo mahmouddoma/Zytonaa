@@ -1,0 +1,115 @@
+{
+  "navbar": {
+    "brand": {
+      "name": "زيتونة",
+      "logo": "assets/images/logo.jpg"
+    },
+    "links": [
+      { "label": "الرئيسية", "route": "/", "exact": true },
+      { "label": "من نحن", "route": "/about" },
+      { "label": "منتجاتنا", "route": "/products" },
+      { "label": "الأخبار", "route": "/news" },
+      { "label": "تواصل معنا", "route": "/contact" }
+    ],
+    "cta": { "text": "اطلب الآن", "url": "https://wa.me/+201066670226" }
+  },
+  "footer": {
+    "companyName": "زيتونة",
+    "description": "حلول تغذية نباتية مستدامة لزيادة الإنتاجية وجودة المحصول.",
+    "links": [
+      { "label": "الرئيسية", "route": "/", "exact": true },
+      { "label": "من نحن", "route": "/about" },
+      { "label": "منتجاتنا", "route": "/products" },
+      { "label": "الأخبار", "route": "/news" },
+      { "label": "تواصل معنا", "route": "/contact" }
+    ],
+    "contact": {
+      "address": "1191ش كورنيش النيل - مركز التجارة العالمي - قصر النيل - القاهرة",
+      "phone": "+201066670226",
+      "email": "zatona.fert@gmail.com"
+    },
+    "newsletter": {
+      "title": "النشرة البريدية",
+      "subtitle": "اشترك ليصلك كل جديد",
+      "placeholder": "بريدك الإلكتروني",
+      "button": "اشترك"
+    },
+    "social": {
+      "twitter": "#",
+      "instagram": "#",
+      "facebook": "#",
+      "youtube": "#"
+    }
+  },
+  "products": [
+    {
+      "id": 1,
+      "name": "Zy-Grow 20-20-20",
+      "desc": "NPK متوازن للنمو الخضري المبكر.",
+      "tag": "الأكثر طلبًا",
+      "img": "assets/images/product1.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Zy-Cal Boron",
+      "desc": "كالسيوم + بورون لتقوية الخلايا وتحسين العقد.",
+      "img": "assets/images/product2.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Zy-Micro Mix",
+      "desc": "عناصر صغرى مخلبة لرفع كفاءة التمثيل.",
+      "img": "assets/images/product3.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Zy-Root Booster",
+      "desc": "منشّط جذور لزيادة الامتصاص.",
+      "img": "assets/images/product1.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Zy-K Potassium",
+      "desc": "بوتاسيوم عالي للجودة وتحسين التلوّن.",
+      "img": "assets/images/product2.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Zy-Amino",
+      "desc": "أحماض أمينية لتحمل الإجهاد.",
+      "img": "assets/images/product3.jpg"
+    }
+  ],
+  "contact": {
+    "title": "تواصل معنا",
+    "intro": "يسعدنا تواصلك معنا لأي استفسار حول منتجات زيتونة أو طلب عروض خاصة للمزارع والتوزيع.",
+    "info": {
+      "address": "1191ش كورنيش النيل - مركز التجارة العالمي - قصر النيل - القاهرة",
+      "phone": "+201066670226",
+      "email": "zatona.fert@gmail.com"
+    },
+    "mapUrl": "https://maps.google.com/maps?q=al-sharqiyah&t=&z=11&ie=UTF8&iwloc=&output=embed",
+    "form": {
+      "labels": {
+        "name": "الاسم",
+        "email": "البريد الإلكتروني",
+        "message": "الرسالة"
+      },
+      "placeholders": {
+        "name": "الاسم الكامل",
+        "email": "name@example.com",
+        "message": "اكتب رسالتك هنا..."
+      },
+      "buttons": { "send": "إرسال", "cancel": "إلغاء" },
+      "successMessage": "تم إرسال رسالتك، سنعاود التواصل قريبًا."
+    }
+  },
+  "common": {
+    "sections": {
+      "products": {
+        "title": "منتجاتنا",
+        "subtitle": "مجموعة أسمدة ورقية وجذرية وعناصر صغرى ومحفزات نمو."
+      }
+    }
+  }
+}

@@ -4,36 +4,36 @@
             <!-- Form -->
             <div class="col-12 col-lg-6">
                 <div class="card-zy p-4 p-md-4 h-100 d-flex flex-column">
-                    <h2 class="section-title mb-3">تواصل معنا</h2>
+                    <h2 class="section-title mb-3">{{ title }}</h2>
                     <p class="contact-intro lead-muted mb-4">
-                        يسعدنا تواصلك معنا لأي استفسار حول منتجات زيتونة أو طلب عروض خاصة للمزارع والتوزيع.
+                        {{ intro }}
                     </p>
 
                     <form (ngSubmit)="submit()" #f="ngForm" class="row g-3 mt-auto">
                         <div class="col-12">
-                            <label class="form-label">الاسم</label>
+                            <label class="form-label">{{ labels.name }}</label>
                             <input class="form-control" name="name" [(ngModel)]="model.name" required
-                                placeholder="الاسم الكامل" />
+                                [placeholder]="placeholders.name" />
                         </div>
 
                         <div class="col-12">
-                            <label class="form-label">البريد الإلكتروني</label>
+                            <label class="form-label">{{ labels.email }}</label>
                             <input class="form-control" type="email" name="email" [(ngModel)]="model.email" required
-                                placeholder="name@example.com" />
+                                [placeholder]="placeholders.email" />
                         </div>
 
                         <div class="col-12">
-                            <label class="form-label">الرسالة</label>
+                            <label class="form-label">{{ labels.message }}</label>
                             <textarea rows="4" class="form-control" name="message" [(ngModel)]="model.message" required
-                                placeholder="اكتب رسالتك هنا..."></textarea>
+                                [placeholder]="placeholders.message"></textarea>
                         </div>
 
                         <div class="col-12 d-flex flex-wrap gap-2">
                             <button class="btn btn-brand" [disabled]="f.invalid">
-                                إرسال
+                                {{ buttons.send }}
                             </button>
                             <button type="reset" class="btn btn-outline-secondary">
-                                إلغاء
+                                {{ buttons.cancel }}
                             </button>
                         </div>
                     </form>
@@ -46,22 +46,22 @@
                     <h5 class="fw-bold mb-3">معلومات التواصل</h5>
                     <ul class="list-unstyled lead-muted mb-3">
                         <li class="mb-2">
-                            <i class="bi bi-geo-alt me-1"></i> الشرقية
+                            <i class="bi bi-geo-alt me-1"></i> {{ info.address }}
                         </li>
                         <li class="mb-2">
-                            <i class="bi bi-telephone me-1"></i> +966-5X-XXX-XXXX
+                            <i class="bi bi-telephone me-1"></i> {{ info.phone }}
                         </li>
                         <li class="mb-2">
                             <i class="bi bi-envelope me-1"></i>
-                            <a href="mailto:sales@zytonaa.com" class="contact-link">
-                                sales&#64;zytonaa.com
+                            <a [href]="'mailto:' + (info.email || '')" class="contact-link">
+                                {{ info.email }}
                             </a>
                         </li>
                     </ul>
 
                     <div class="ratio ratio-16x9 rounded overflow-hidden mt-auto">
-                        <iframe src="https://maps.google.com/maps?q=al-sharqiyah&t=&z=11&ie=UTF8&iwloc=&output=embed"
-                            style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe [src]="mapUrl" style="border:0;" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>

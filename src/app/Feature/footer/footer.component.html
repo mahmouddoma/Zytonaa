@@ -4,10 +4,10 @@
             <!-- Company Info -->
             <div class="col-12 col-md-4 col-lg-4">
                 <h5 class="mb-3 fw-bold">
-                    <span class="gradient-text">زيتونة</span>
+                    <span class="gradient-text">{{ data?.companyName }}</span>
                 </h5>
                 <p class="lead-muted mb-3 footer-desc">
-                    حلول تغذية نباتية مستدامة لزيادة الإنتاجية وجودة المحصول.
+                    {{ data?.description }}
                 </p>
                 <small class="text-white d-block">
                     © {{ year }} جميع الحقوق محفوظة.
@@ -16,60 +16,59 @@
 
             <!-- Quick Links -->
             <div class="col-12 col-sm-6 col-md-3 col-lg-2">
-                <h6 class="mb-3 fw-semibold footer-title">روابط سريعة</h6>
+                <h6 class="mb-3 fw-semibold footer-title">{{ data?.links?.title }}</h6>
                 <ul class="list-unstyled footer-links">
-                    <li class="mb-2"><a routerLink="/">الرئيسية</a></li>
-                    <li class="mb-2"><a routerLink="/about">من نحن</a></li>
-                    <li class="mb-2"><a routerLink="/products">منتجاتنا</a></li>
-                    <li class="mb-2"><a routerLink="/news">الأخبار</a></li>
-                    <li class="mb-2"><a routerLink="/contact">تواصل معنا</a></li>
+                    <li class="mb-2" *ngFor="let l of data?.links?.links">
+                        <a [routerLink]="l.route">{{ l.label }}</a>
+                    </li>
                 </ul>
             </div>
 
             <!-- Contact Info -->
             <div class="col-12 col-sm-6 col-md-3 col-lg-3">
-                <h6 class="mb-3 fw-semibold footer-title">تواصل معنا</h6>
+                <h6 class="mb-3 fw-semibold footer-title">{{ data?.contact?.title }}</h6>
                 <ul class="list-unstyled footer-contact">
                     <li class="mb-2 d-flex align-items-start gap-2">
                         <i class="bi bi-geo-alt-fill mt-1 icon-accent"></i>
-                        <span>الشرقية</span>
+                        <span>{{ data?.contact?.address }}</span>
                     </li>
                     <li class="mb-2 d-flex align-items-center gap-2">
                         <i class="bi bi-telephone-fill icon-accent"></i>
-                        <span>966-5X-XXX-XXXX+</span>
+                        <span>{{ data?.contact?.phone }}</span>
                     </li>
                     <li class="mb-2 d-flex align-items-center gap-2">
                         <i class="bi bi-envelope-fill icon-accent"></i>
-                        <a href="mailto:info@zytonaa.com">info&#64;zytonaa.com</a>
+                        <a [href]="'mailto:' + (data?.contact?.email || '')">{{ data?.contact?.email }}</a>
                     </li>
                 </ul>
             </div>
 
             <!-- Newsletter + Social -->
             <div class="col-12 col-md-4 col-lg-3">
-                <h6 class="mb-3 fw-semibold footer-title">النشرة البريدية</h6>
-                <p class="small text-white mb-3">اشترك ليصلك كل جديد</p>
+                <h6 class="mb-3 fw-semibold footer-title">{{ data?.newsletter?.title }}</h6>
+                <p class="small text-white mb-3">{{ data?.newsletter?.subtitle }}</p>
 
                 <form class="d-flex flex-column flex-sm-row gap-2">
-                    <input class="form-control form-control-sm" type="email" placeholder="بريدك الإلكتروني" />
+                    <input class="form-control form-control-sm" type="email"
+                        [placeholder]="data?.newsletter?.placeholder" />
                     <button class="btn btn-brand btn-sm" type="button">
-                        اشترك
+                        {{ data?.newsletter?.button }}
                     </button>
                 </form>
 
                 <div class="mt-4">
-                    <h6 class="mb-3 fw-semibold small">تابعنا</h6>
+                    <h6 class="mb-3 fw-semibold small">{{ data?.social?.title }}</h6>
                     <div class="d-flex gap-3 social-icons">
-                        <a href="#" class="social-icon">
+                        <a [href]="data?.social?.twitter" class="social-icon">
                             <i class="bi bi-twitter-x"></i>
                         </a>
-                        <a href="#" class="social-icon">
+                        <a [href]="data?.social?.instagram" class="social-icon">
                             <i class="bi bi-instagram"></i>
                         </a>
-                        <a href="#" class="social-icon">
+                        <a [href]="data?.social?.facebook" class="social-icon">
                             <i class="bi bi-facebook"></i>
                         </a>
-                        <a href="#" class="social-icon">
+                        <a [href]="data?.social?.youtube" class="social-icon">
                             <i class="bi bi-youtube"></i>
                         </a>
                     </div>
