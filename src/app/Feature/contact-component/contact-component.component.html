@@ -46,11 +46,16 @@
                     <h5 class="fw-bold mb-3">معلومات التواصل</h5>
                     <ul class="list-unstyled lead-muted mb-3">
                         <li class="mb-2">
-                            <i class="bi bi-geo-alt me-1"></i> {{ info.address }}
+                            <i class="bi bi-geo-alt me-1"></i>
+                            {{ info.address }}
                         </li>
-                        <li class="mb-2">
-                            <i class="bi bi-telephone me-1"></i> {{ info.phone }}
+
+                        <!-- كل الأرقام من المصفوفة -->
+                        <li class="mb-2" *ngFor="let p of info.phones">
+                            <i class="bi bi-telephone me-1"></i>
+                            {{ p }}
                         </li>
+
                         <li class="mb-2">
                             <i class="bi bi-envelope me-1"></i>
                             <a [href]="'mailto:' + (info.email || '')" class="contact-link">
@@ -60,7 +65,7 @@
                     </ul>
 
                     <div class="ratio ratio-16x9 rounded overflow-hidden mt-auto">
-                        <iframe [src]="mapUrl" style="border:0;" loading="lazy"
+                        <iframe [src]="mapUrl" style="border: 0" loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>

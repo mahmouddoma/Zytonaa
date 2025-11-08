@@ -16,37 +16,52 @@
 
             <!-- Quick Links -->
             <div class="col-12 col-sm-6 col-md-3 col-lg-2">
-                <h6 class="mb-3 fw-semibold footer-title">{{ data?.links?.title }}</h6>
+                <h6 class="mb-3 fw-semibold footer-title">
+                    {{ data?.links?.title || 'روابط سريعة' }}
+                </h6>
                 <ul class="list-unstyled footer-links">
-                    <li class="mb-2" *ngFor="let l of data?.links?.links">
-                        <a [routerLink]="l.route">{{ l.label }}</a>
+                    <li class="mb-2" *ngFor="let l of data?.links">
+                        <a [routerLink]="l.route" [routerLinkActive]="'active'">
+                            {{ l.label }}
+                        </a>
                     </li>
                 </ul>
             </div>
 
             <!-- Contact Info -->
             <div class="col-12 col-sm-6 col-md-3 col-lg-3">
-                <h6 class="mb-3 fw-semibold footer-title">{{ data?.contact?.title }}</h6>
+                <h6 class="mb-3 fw-semibold footer-title">
+                    {{ data?.contact?.title || 'معلومات التواصل' }}
+                </h6>
                 <ul class="list-unstyled footer-contact">
                     <li class="mb-2 d-flex align-items-start gap-2">
                         <i class="bi bi-geo-alt-fill mt-1 icon-accent"></i>
                         <span>{{ data?.contact?.address }}</span>
                     </li>
-                    <li class="mb-2 d-flex align-items-center gap-2">
+
+                    <!-- Multiple Phones -->
+                    <li class="mb-2 d-flex align-items-center gap-2" *ngFor="let p of data?.contact?.phones">
                         <i class="bi bi-telephone-fill icon-accent"></i>
-                        <span>{{ data?.contact?.phone }}</span>
+                        <span>{{ p }}</span>
                     </li>
+
                     <li class="mb-2 d-flex align-items-center gap-2">
                         <i class="bi bi-envelope-fill icon-accent"></i>
-                        <a [href]="'mailto:' + (data?.contact?.email || '')">{{ data?.contact?.email }}</a>
+                        <a [href]="'mailto:' + (data?.contact?.email || '')">
+                            {{ data?.contact?.email }}
+                        </a>
                     </li>
                 </ul>
             </div>
 
             <!-- Newsletter + Social -->
             <div class="col-12 col-md-4 col-lg-3">
-                <h6 class="mb-3 fw-semibold footer-title">{{ data?.newsletter?.title }}</h6>
-                <p class="small text-white mb-3">{{ data?.newsletter?.subtitle }}</p>
+                <h6 class="mb-3 fw-semibold footer-title">
+                    {{ data?.newsletter?.title }}
+                </h6>
+                <p class="small text-white mb-3">
+                    {{ data?.newsletter?.subtitle }}
+                </p>
 
                 <form class="d-flex flex-column flex-sm-row gap-2">
                     <input class="form-control form-control-sm" type="email"
@@ -57,7 +72,9 @@
                 </form>
 
                 <div class="mt-4">
-                    <h6 class="mb-3 fw-semibold small">{{ data?.social?.title }}</h6>
+                    <h6 class="mb-3 fw-semibold small">
+                        {{ data?.social?.title || 'تابعنا' }}
+                    </h6>
                     <div class="d-flex gap-3 social-icons">
                         <a [href]="data?.social?.twitter" class="social-icon">
                             <i class="bi bi-twitter-x"></i>

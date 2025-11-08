@@ -2,8 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ContentService } from '../../shared/content.service';
+import { ContactMailService } from '../../shared/contact-mail.service';
 
-
+interface ContactInfo {
+  address: string;
+  email: string;
+  phones: string[];
+}
 
 @Component({
   selector: 'app-contact-component',
@@ -16,8 +21,9 @@ export class ContactComponentComponent {
 
   title = '';
   intro = '';
-  info: { address?: string; phone?: string; email?: string } = {};
+  info: ContactInfo = { address: '', email: '', phones: [] };
   mapUrl = '';
+
   labels = { name: 'الاسم', email: 'البريد الإلكتروني', message: 'الرسالة' };
   placeholders = {
     name: 'الاسم الكامل',
@@ -26,21 +32,43 @@ export class ContactComponentComponent {
   };
   buttons = { send: 'إرسال', cancel: 'إلغاء' };
   successMessage = 'تم إرسال رسالتك، سنعاود التواصل قريبًا.';
+  isSending = false;
 
-  constructor(private content: ContentService) {
+  constructor(
+    private content: ContentService,
+    private mailService: ContactMailService
+  ) {
     this.content.getSection<any>('contact').subscribe((c) => {
-      this.title = c?.title || this.title;
-      this.intro = c?.intro || this.intro;
-      this.info = c?.info || this.info;
-      this.mapUrl = c?.mapUrl || this.mapUrl;
-      this.labels = c?.form?.labels || this.labels;
-      this.placeholders = c?.form?.placeholders || this.placeholders;
-      this.buttons = c?.form?.buttons || this.buttons;
-      this.successMessage = c?.form?.successMessage || this.successMessage;
+      if (!c) return;
+
+      this.title = c.title || this.title;
+      this.intro = c.intro || this.intro;
+
+      const ci = c.info || {};
+      this.info = {
+        address: ci.address || this.info.address,
+        email: ci.email || this.info.email,
+        phones: Array.isArray(ci.phones)
+          ? ci.phones
+          : [ci.phone].filter((x: string) => !!x),
+      };
+
+      this.mapUrl = c.mapUrl || this.mapUrl;
+      this.labels = c.form?.labels || this.labels;
+      this.placeholders = c.form?.placeholders || this.placeholders;
+      this.buttons = c.form?.buttons || this.buttons;
+      this.successMessage = c.form?.successMessage || this.successMessage;
     });
   }
 
   submit() {
-    alert(this.successMessage);
+    if (!this.model.name || !this.model.email || !this.model.message) return;
+
+    const subject = encodeURIComponent('رسالة جديدة من نموذج التواصل - زيتونة');
+    const body = encodeURIComponent(
+      `الاسم: ${this.model.name}\nالبريد: ${this.model.email}\n\n${this.model.message}`
+    );
+
+    window.location.href = `mailto:zatona.fert@gmail.com?subject=${subject}&body=${body}`;
   }
 }
