@@ -2,30 +2,69 @@
   "navbar": {
     "brand": {
       "name": "زيتونة",
-      "logo": "assets/images/logo.jpg"
+      "logo": "assets/images/profilePic.png"
     },
     "links": [
-      { "label": "الرئيسية", "route": "/", "exact": true },
-      { "label": "من نحن", "route": "/about" },
-      { "label": "منتجاتنا", "route": "/products" },
-      { "label": "الأخبار", "route": "/news" },
-      { "label": "تواصل معنا", "route": "/contact" }
+      {
+        "label": "الرئيسية",
+        "route": "/",
+        "exact": true
+      },
+      {
+        "label": "من نحن",
+        "route": "/about"
+      },
+      {
+        "label": "منتجاتنا",
+        "route": "/products"
+      },
+      {
+        "label": "الأخبار",
+        "route": "/news"
+      },
+      {
+        "label": "تواصل معنا",
+        "route": "/contact"
+      }
     ],
-    "cta": { "text": "اطلب الآن", "url": "https://wa.me/+201066670226" }
+    "cta": {
+      "text": "اطلب الآن",
+      "url": "https://wa.me/+201066670226"
+    }
   },
   "footer": {
     "companyName": "زيتونة",
     "description": "حلول تغذية نباتية مستدامة لزيادة الإنتاجية وجودة المحصول.",
     "links": [
-      { "label": "الرئيسية", "route": "/", "exact": true },
-      { "label": "من نحن", "route": "/about" },
-      { "label": "منتجاتنا", "route": "/products" },
-      { "label": "الأخبار", "route": "/news" },
-      { "label": "تواصل معنا", "route": "/contact" }
+      {
+        "label": "الرئيسية",
+        "route": "/",
+        "exact": true
+      },
+      {
+        "label": "من نحن",
+        "route": "/about"
+      },
+      {
+        "label": "منتجاتنا",
+        "route": "/products"
+      },
+      {
+        "label": "الأخبار",
+        "route": "/news"
+      },
+      {
+        "label": "تواصل معنا",
+        "route": "/contact"
+      }
     ],
     "contact": {
       "address": "1191ش كورنيش النيل - مركز التجارة العالمي - قصر النيل - القاهرة",
-      "phones": ["+201066670226", "0225758240", "0225758241"],
+      "phones": [
+        "+201066670226",
+        "0225758240",
+        "0225758241"
+      ],
       "email": "zatona.fert@gmail.com"
     },
     "newsletter": {
@@ -85,7 +124,11 @@
     "intro": "يسعدنا تواصلك معنا لأي استفسار حول منتجات زيتونة أو طلب عروض خاصة للمزارع والتوزيع.",
     "info": {
       "address": "1191ش كورنيش النيل - مركز التجارة العالمي - قصر النيل - القاهرة",
-      "phones": ["+201066670226", "0225758240", "0225758241"],
+      "phones": [
+        "+201066670226",
+        "0225758240",
+        "0225758241"
+      ],
       "email": "zatona.fert@gmail.com"
     },
     "mapUrl": "https://maps.google.com/maps?q=al-sharqiyah&t=&z=11&ie=UTF8&iwloc=&output=embed",
@@ -100,7 +143,10 @@
         "email": "name@example.com",
         "message": "اكتب رسالتك هنا..."
       },
-      "buttons": { "send": "إرسال", "cancel": "إلغاء" },
+      "buttons": {
+        "send": "إرسال",
+        "cancel": "إلغاء"
+      },
       "successMessage": "تم إرسال رسالتك، سنعاود التواصل قريبًا."
     }
   },

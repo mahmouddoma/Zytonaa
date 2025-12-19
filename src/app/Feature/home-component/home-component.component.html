@@ -25,115 +25,207 @@
         </div>
     </section>
 
+    <!-- Image Gallery Auto Scroll -->
+    <section class="gallery-section">
+        <div class="gallery-container">
+            <button class="gallery-nav-btn prev" (click)="scrollPrev()" aria-label="Previous">
+                <i class="bi bi-chevron-right"></i>
+            </button>
+            <div class="gallery-scroll">
+                <div class="gallery-track" #galleryTrack>
+                    <!-- First Set -->
+                    <div class="gallery-item">
+                        <img src="assets/images/1765821549773.jpg" alt="Zytonaa Gallery 1" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/1765821612465.jpg" alt="Zytonaa Gallery 2" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/1765891184328.jpg" alt="Zytonaa Gallery 3" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/1765891268333.jpg" alt="Zytonaa Gallery 4" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/1765891276258.jpg" alt="Zytonaa Gallery 5" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/1765891283736.jpg" alt="Zytonaa Gallery 6" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/AQMpqWLJiUop2iM2iKs2PZbBgxCL1uaYU5LOUFKi_fCK10ka9wN6sQXMcH55LilCDpyoqp5Mq_r9eLwl7pGhoha-.jpeg"
+                            alt="Zytonaa Gallery 7" />
+                    </div>
+
+                    <!-- Duplicate Set for seamless loop -->
+                    <div class="gallery-item">
+                        <img src="assets/images/1765821549773.jpg" alt="Zytonaa Gallery 1" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/1765821612465.jpg" alt="Zytonaa Gallery 2" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/1765891184328.jpg" alt="Zytonaa Gallery 3" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/1765891268333.jpg" alt="Zytonaa Gallery 4" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/1765891276258.jpg" alt="Zytonaa Gallery 5" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/1765891283736.jpg" alt="Zytonaa Gallery 6" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/AQMpqWLJiUop2iM2iKs2PZbBgxCL1uaYU5LOUFKi_fCK10ka9wN6sQXMcH55LilCDpyoqp5Mq_r9eLwl7pGhoha-.jpeg"
+                            alt="Zytonaa Gallery 7" />
+                    </div>
+                </div>
+            </div>
+            <button class="gallery-nav-btn next" (click)="scrollNext()" aria-label="Next">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+        </div>
+    </section>
+
     <!-- What we serve -->
-    <section class="my-5">
-        <h2 class="section-title">خدماتنا للمزارع والموزعين</h2>
-        <p class="lead-muted mb-4 section-subtitle">
-            تركيبات أسمدة عالية الكفاءة، استشارات تغذية نباتية، جداول تسميد مخصصة بحسب نوع المحصول والتربة.
+    <section class="my-5 services-section">
+        <h2 class="section-title text-center">خدماتنا للمزارع والموزعين</h2>
+        <p class="lead-muted mb-5 section-subtitle text-center mx-auto">
+            نقدم حلولاً متكاملة لتحسين الإنتاج الزراعي من خلال تركيبات أسمدة عالية الجودة ودعم فني متخصص
         </p>
 
-        <div class="row g-4 features-grid">
-            <!-- Card 1 -->
-            <div class="col-12 col-md-4">
-                <article class="feature-card" style="--accent:#1b8e4b;">
-                    <div class="feature-badge">
-                        <i class="bi bi-leaf"></i> تركيبات متوازنة
+        <div class="row g-4 services-grid">
+            <!-- Service 1 -->
+            <div class="col-12 col-md-6 service-item" style="--item-delay: 0.1s;">
+                <article class="service-card">
+                    <div class="service-icon">
+                        <i class="bi bi-boxes"></i>
                     </div>
-
-                    <div class="feature-media">
-                        <img src="assets/images/product1.jpg" alt="أسمدة ورقية وجذرية" class="img-cover" />
-                        <span class="shine"></span>
-                    </div>
-
-                    <div class="feature-body">
-                        <h5 class="title">أسمدة ورقية وجذرية</h5>
-                        <p class="desc">صيغ متوازنة لتعزيز الامتصاص وتحسين النمو الخضري والثمري.</p>
-
-                        <div class="d-flex align-items-center justify-content-between gap-2">
-                            <span class="chip">
-                                <i class="bi bi-droplet-half"></i> امتصاص عالي
-                            </span>
-                            <button class="btn btn-sm btn-brand-soft">
-                                اطلب استشارة <i class="bi bi-arrow-left-short"></i>
-                            </button>
-                        </div>
+                    <div class="service-content">
+                        <h3 class="service-title">توريد أسمدة ومخصبات</h3>
+                        <p class="service-desc">
+                            نوفر مجموعة واسعة من الأسمدة العضوية والكيميائية والمخصبات الزراعية عالية الجودة.
+                            منتجاتنا معتمدة ومطابقة للمواصفات العالمية لضمان أفضل النتائج لمحاصيلك.
+                            نلتزم بالتوريد السريع والمستمر لضمان عدم انقطاع احتياجاتك الزراعية.
+                        </p>
+                        <ul class="service-features">
+                            <li><i class="bi bi-check-circle-fill"></i> منتجات معتمدة ومضمونة</li>
+                            <li><i class="bi bi-check-circle-fill"></i> توريد سريع ومستمر</li>
+                            <li><i class="bi bi-check-circle-fill"></i> أسعار تنافسية</li>
+                        </ul>
                     </div>
                 </article>
             </div>
 
-            <!-- Card 2 (مميّزة) -->
-            <div class="col-12 col-md-4">
-                <article class="feature-card featured" style="--accent:#f8a116;">
-                    <div class="feature-badge">
-                        <i class="bi bi-stars"></i> الأكثر طلبًا
+            <!-- Service 2 -->
+            <div class="col-12 col-md-6 service-item" style="--item-delay: 0.2s;">
+                <article class="service-card">
+                    <div class="service-icon">
+                        <i class="bi bi-clipboard-data"></i>
                     </div>
-
-                    <div class="feature-media">
-                        <img src="assets/images/product2.jpg" alt="استشارات تغذية" class="img-cover" />
-                        <span class="shine"></span>
-                    </div>
-
-                    <div class="feature-body">
-                        <h5 class="title">استشارات تغذية</h5>
-                        <p class="desc">تحليل احتياجات المحصول والتربة واقتراح برامج تسميد دقيقة.</p>
-
-                        <div class="d-flex align-items-center justify-content-between gap-2">
-                            <span class="chip">
-                                <i class="bi bi-graph-up"></i> برنامج دقيق
-                            </span>
-                            <button class="btn btn-sm btn-brand-soft">
-                                احجز الآن <i class="bi bi-arrow-left-short"></i>
-                            </button>
-                        </div>
+                    <div class="service-content">
+                        <h3 class="service-title">خطط تغذية نباتية متكاملة</h3>
+                        <p class="service-desc">
+                            نصمم برامج تسميد مخصصة بناءً على تحليل دقيق لنوع التربة والمحصول والظروف المناخية.
+                            خططنا تضمن التوازن الأمثل للعناصر الغذائية في كل مرحلة من مراحل النمو،
+                            مما يحقق أقصى إنتاجية بأقل تكلفة ممكنة.
+                        </p>
+                        <ul class="service-features">
+                            <li><i class="bi bi-check-circle-fill"></i> تحليل شامل للتربة</li>
+                            <li><i class="bi bi-check-circle-fill"></i> برامج مخصصة لكل محصول</li>
+                            <li><i class="bi bi-check-circle-fill"></i> متابعة دورية</li>
+                        </ul>
                     </div>
                 </article>
             </div>
 
-            <!-- Card 3 -->
-            <div class="col-12 col-md-4">
-                <article class="feature-card" style="--accent:#1b8e4b;">
-                    <div class="feature-badge">
-                        <i class="bi bi-shield-check"></i> ضمان جودة
+            <!-- Service 3 -->
+            <div class="col-12 col-md-6 service-item" style="--item-delay: 0.3s;">
+                <article class="service-card">
+                    <div class="service-icon">
+                        <i class="bi bi-headset"></i>
                     </div>
-
-                    <div class="feature-media">
-                        <img src="assets/images/product3.jpg" alt="منتجات معتمدة" class="img-cover" />
-                        <span class="shine"></span>
+                    <div class="service-content">
+                        <h3 class="service-title">خدمات الدعم الفني والاستشارات</h3>
+                        <p class="service-desc">
+                            فريقنا من المهندسين الزراعيين المتخصصين متاح دائماً لتقديم المشورة والدعم الفني.
+                            نساعدك في حل المشاكل الزراعية، تحسين جودة المحصول، وتطوير استراتيجيات الإنتاج.
+                            الاستشارات متاحة ميدانياً وعن بُعد لضمان استجابة سريعة.
+                        </p>
+                        <ul class="service-features">
+                            <li><i class="bi bi-check-circle-fill"></i> استشارات مجانية</li>
+                            <li><i class="bi bi-check-circle-fill"></i> زيارات ميدانية</li>
+                            <li><i class="bi bi-check-circle-fill"></i> دعم فني على مدار الساعة</li>
+                        </ul>
                     </div>
+                </article>
+            </div>
 
-                    <div class="feature-body">
-                        <h5 class="title">منتجات معتمدة</h5>
-                        <p class="desc">جودة ثابتة، توريد سريع، ودعم فني مستمر للمزارع والموزع.</p>
-
-                        <div class="d-flex align-items-center justify-content-between gap-2">
-                            <span class="chip">
-                                <i class="bi bi-truck"></i> توريد سريع
-                            </span>
-                            <button class="btn btn-sm btn-brand-soft">
-                                اطلب عرض سعر <i class="bi bi-arrow-left-short"></i>
-                            </button>
-                        </div>
+            <!-- Service 4 -->
+            <div class="col-12 col-md-6 service-item" style="--item-delay: 0.4s;">
+                <article class="service-card">
+                    <div class="service-icon">
+                        <i class="bi bi-globe2"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">توصيات بيئية واستدامة</h3>
+                        <p class="service-desc">
+                            نلتزم بتقديم حلول زراعية صديقة للبيئة تحافظ على صحة التربة والموارد الطبيعية.
+                            نوفر استشارات متخصصة في الزراعة العضوية، إدارة النفايات الزراعية،
+                            وتقنيات الري الذكي لتحقيق إنتاج مستدام وآمن.
+                        </p>
+                        <ul class="service-features">
+                            <li><i class="bi bi-check-circle-fill"></i> حلول صديقة للبيئة</li>
+                            <li><i class="bi bi-check-circle-fill"></i> إدارة موارد مستدامة</li>
+                            <li><i class="bi bi-check-circle-fill"></i> شهادات عضوية</li>
+                        </ul>
                     </div>
                 </article>
             </div>
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="my-5 py-4">
-        <div class="card-zy cta-card">
-            <div class="cta-text text-center text-md-start">
-                <h3 class="fw-bold mb-3 cta-title">
-                    <i class="bi bi-stars cta-icon"></i>
-                    ابدأ موسـمك بقوة مع زيتونة
-                </h3>
-                <p class="lead-muted mb-0 cta-subtitle">
-                    اطلب استشارة مجانية وجداول تسميد مخصصة متوافقة مع محاصيلك الآن.
-                </p>
+    <!-- CTA Section -->
+    <section class="my-5 py-5 cta-section">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Sales Card -->
+                <div class="col-md-6">
+                    <div class="cta-card sales-card">
+                        <div class="cta-content">
+                            <div class="icon-wrapper mb-3">
+                                <i class="bi bi-bag-check-fill"></i>
+                            </div>
+                            <h3 class="cta-title">ابدأ موسمك بقوة</h3>
+                            <p class="cta-desc">
+                                اكتشف تشكيلة واسعة من الأسمدة والمبيدات المتخصصة لضمان أفضل إنتاجية لمحصولك.
+                            </p>
+                            <a routerLink="/products" class="btn btn-primary cta-btn">
+                                تصفح المنتجات <i class="bi bi-arrow-left ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Support Card -->
+                <div class="col-md-6">
+                    <div class="cta-card support-card">
+                        <div class="cta-content">
+                            <div class="icon-wrapper mb-3">
+                                <i class="bi bi-headset"></i>
+                            </div>
+                            <h3 class="cta-title">دعم فني متخصص</h3>
+                            <p class="cta-desc">
+                                فريق من المهندسين الزراعيين جاهز للرد على استفساراتك وتقديم جداول تسميد مخصصة.
+                            </p>
+                            <a routerLink="/contact" class="btn btn-outline-light cta-btn glass-btn">
+                                تواصل معنا <i class="bi bi-whatsapp ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <a routerLink="/contact" class="btn btn-brand btn-lg mt-3 mt-md-0 px-4 py-3 text-nowrap">
-                <i class="bi bi-telephone-fill me-2"></i>اطلب استشارة
-            </a>
         </div>
     </section>
 </div>
