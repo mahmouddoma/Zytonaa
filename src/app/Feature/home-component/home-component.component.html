@@ -25,66 +25,32 @@
         </div>
     </section>
 
-    <!-- Image Gallery Auto Scroll -->
-    <section class="gallery-section">
-        <div class="gallery-container">
-            <button class="gallery-nav-btn prev" (click)="scrollPrev()" aria-label="Previous">
-                <i class="bi bi-chevron-right"></i>
-            </button>
-            <div class="gallery-scroll">
-                <div class="gallery-track" #galleryTrack>
-                    <!-- First Set -->
-                    <div class="gallery-item">
-                        <img src="assets/images/1765821549773.jpg" alt="Zytonaa Gallery 1" />
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/images/1765821612465.jpg" alt="Zytonaa Gallery 2" />
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/images/1765891184328.jpg" alt="Zytonaa Gallery 3" />
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/images/1765891268333.jpg" alt="Zytonaa Gallery 4" />
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/images/1765891276258.jpg" alt="Zytonaa Gallery 5" />
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/images/1765891283736.jpg" alt="Zytonaa Gallery 6" />
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/images/AQMpqWLJiUop2iM2iKs2PZbBgxCL1uaYU5LOUFKi_fCK10ka9wN6sQXMcH55LilCDpyoqp5Mq_r9eLwl7pGhoha-.jpeg"
-                            alt="Zytonaa Gallery 7" />
-                    </div>
+    <!-- Categories Grid -->
+    <section class="categories-section my-5">
+        <div class="row g-4 align-items-center">
+            <!-- Text Content (Right in RTL) -->
+            <div class="col-lg-5 order-lg-last">
+                <h2 class="section-title mb-4">زيتونة للكيماويات والحلول الزراعية</h2>
+                <p class="lead-muted mb-4">
+                    نقدم مجموعة وفيرة من المنتجات الزراعية التي تتضمن المبيدات الحشرية والمبيدات الفطرية ومبيدات الحشائش
+                    ومبيدات النيماتودا، وكذلك أكثر من 100 منتج من الأسمدة والصحة العامة.
+                </p>
+                <p class="lead-muted">
+                    نعمل مع كبرى الشركات العالمية لتقديم أفضل التكنولوجيا الزراعية في السوق المصري.
+                </p>
+            </div>
 
-                    <!-- Duplicate Set for seamless loop -->
-                    <div class="gallery-item">
-                        <img src="assets/images/1765821549773.jpg" alt="Zytonaa Gallery 1" />
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/images/1765821612465.jpg" alt="Zytonaa Gallery 2" />
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/images/1765891184328.jpg" alt="Zytonaa Gallery 3" />
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/images/1765891268333.jpg" alt="Zytonaa Gallery 4" />
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/images/1765891276258.jpg" alt="Zytonaa Gallery 5" />
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/images/1765891283736.jpg" alt="Zytonaa Gallery 6" />
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/images/AQMpqWLJiUop2iM2iKs2PZbBgxCL1uaYU5LOUFKi_fCK10ka9wN6sQXMcH55LilCDpyoqp5Mq_r9eLwl7pGhoha-.jpeg"
-                            alt="Zytonaa Gallery 7" />
-                    </div>
+            <!-- Bento Grid (Left in RTL) -->
+            <div class="col-lg-7 order-lg-first">
+                <div class="bento-grid">
+                    <a routerLink="/products" class="bento-item" [class.wide]="cat.size === 'large'"
+                        *ngFor="let cat of categories">
+                        <div class="bento-bg" [style.background-image]="'url(' + cat.img + ')'"></div>
+                        <div class="bento-overlay"></div>
+                        <h3 class="bento-title">{{ cat.name }}</h3>
+                    </a>
                 </div>
             </div>
-            <button class="gallery-nav-btn next" (click)="scrollNext()" aria-label="Next">
-                <i class="bi bi-chevron-left"></i>
-            </button>
         </div>
     </section>
 

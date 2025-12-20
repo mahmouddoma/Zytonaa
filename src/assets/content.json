@@ -50,10 +50,6 @@
         "route": "/products"
       },
       {
-        "label": "الأخبار",
-        "route": "/news"
-      },
-      {
         "label": "تواصل معنا",
         "route": "/contact"
       }
@@ -65,7 +61,7 @@
         "0225758240",
         "0225758241"
       ],
-      "email": "zatona.fert@gmail.com"
+      "email": "zaytona@zaytona.info"
     },
     "newsletter": {
       "title": "النشرة البريدية",
@@ -74,10 +70,8 @@
       "button": "اشترك"
     },
     "social": {
-      "twitter": "#",
-      "instagram": "#",
-      "facebook": "#",
-      "youtube": "#"
+      "instagram": "https://www.instagram.com/zaytona.fert/",
+      "facebook": "https://www.facebook.com/zaytonafert"
     }
   },
   "products": [
@@ -129,7 +123,7 @@
         "0225758240",
         "0225758241"
       ],
-      "email": "zatona.fert@gmail.com"
+      "email": "zaytona@zaytona.info"
     },
     "mapUrl": "https://maps.google.com/maps?q=al-sharqiyah&t=&z=11&ie=UTF8&iwloc=&output=embed",
     "form": {

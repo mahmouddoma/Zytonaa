@@ -7,3 +7,27 @@
 </main>
 
 <app-footer></app-footer>
+
+<!-- Floating Actions -->
+<div class="floating-actions">
+    <!-- Social Menu Items -->
+    <div class="social-menu" [class.show]="showSocialMenu">
+        <a href="https://www.facebook.com/zaytonafert" target="_blank" class="social-btn facebook" title="Facebook">
+            <i class="bi bi-facebook"></i>
+        </a>
+        <a href="https://www.instagram.com/zaytona.fert/" target="_blank" class="social-btn instagram"
+            title="Instagram">
+            <i class="bi bi-instagram"></i>
+        </a>
+    </div>
+
+    <!-- Social Toggle Button -->
+    <button class="fab-btn social-toggle-btn" (click)="toggleSocialMenu()">
+        <i class="bi" [class.bi-share-fill]="!showSocialMenu" [class.bi-x-lg]="showSocialMenu"></i>
+    </button>
+
+    <!-- Back to Top Button -->
+    <button class="fab-btn back-to-top-btn" [class.show]="showBackToTop" (click)="scrollToTop()">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+</div>

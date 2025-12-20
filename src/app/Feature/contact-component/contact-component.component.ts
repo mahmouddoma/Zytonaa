@@ -61,7 +61,7 @@ export class ContactComponentComponent {
     });
   }
 
-  submit() {
+  submitEmail() {
     if (!this.model.name || !this.model.email || !this.model.message) return;
 
     const subject = encodeURIComponent('رسالة جديدة من نموذج التواصل - زيتونة');
@@ -69,6 +69,18 @@ export class ContactComponentComponent {
       `الاسم: ${this.model.name}\nالبريد: ${this.model.email}\n\n${this.model.message}`
     );
 
-    window.location.href = `mailto:zatona.fert@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:zaytona@zaytona.info?subject=${subject}&body=${body}`;
+  }
+
+  submitWhatsApp() {
+    if (!this.model.name || !this.model.message) return;
+
+    const text = encodeURIComponent(
+      `مرحباً شركة زيتونة،\nالاسم: ${this.model.name}\n\n${this.model.message}`
+    );
+
+    // Using the phone number from content.json: +201066670226
+    const phone = '201066670226';
+    window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
   }
 }

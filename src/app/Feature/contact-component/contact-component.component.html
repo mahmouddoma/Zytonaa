@@ -9,7 +9,7 @@
                         {{ intro }}
                     </p>
 
-                    <form (ngSubmit)="submit()" #f="ngForm" class="row g-3 mt-auto">
+                    <form #f="ngForm" class="row g-3 mt-auto">
                         <div class="col-12">
                             <label class="form-label">{{ labels.name }}</label>
                             <input class="form-control" name="name" [(ngModel)]="model.name" required
@@ -28,12 +28,16 @@
                                 [placeholder]="placeholders.message"></textarea>
                         </div>
 
-                        <div class="col-12 d-flex flex-wrap gap-2">
-                            <button class="btn btn-brand" [disabled]="f.invalid">
-                                {{ buttons.send }}
+                        <div class="col-12 d-flex flex-wrap gap-3">
+                            <button type="button" class="btn btn-brand flex-grow-1" (click)="submitEmail()"
+                                [disabled]="f.invalid">
+                                <i class="bi bi-envelope me-2"></i>
+                                إرسال عبر البريد
                             </button>
-                            <button type="reset" class="btn btn-outline-secondary">
-                                {{ buttons.cancel }}
+                            <button type="button" class="btn btn-success flex-grow-1" (click)="submitWhatsApp()"
+                                [disabled]="!model.name || !model.message">
+                                <i class="bi bi-whatsapp me-2"></i>
+                                إرسال عبر واتساب
                             </button>
                         </div>
                     </form>

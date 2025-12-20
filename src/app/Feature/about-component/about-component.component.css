@@ -1,21 +1,29 @@
-/* ===== About Section Base ===== */
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap");
+
 .about-section {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-}
-
-/* عنوان ووصف */
-.section-title {
-  font-size: 1.7rem;
-  font-weight: 700;
+  font-family: "Cairo", sans-serif;
   color: #e8f2ec;
+  overflow-x: hidden;
+  background-color: transparent; /* Let global dark gradient show */
 }
 
-.about-subtitle {
-  max-width: 700px;
-  font-size: 0.98rem;
-  color: #a8bdb3;
-  line-height: 1.7;
+.section-title {
+  font-weight: 800;
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(135deg, #e8f2ec, #a8bdb3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: #e8f2ec; /* Fallback */
+}
+
+/* Fallback for title visibility if gradient fails */
+@supports not (-webkit-background-clip: text) {
+  .section-title {
+    background: none;
+    color: #e8f2ec;
+  }
 }
 
 .brand-text {
@@ -23,23 +31,55 @@
   font-weight: 700;
 }
 
-/* ===== Mission & Vision Cards ===== */
-.mission-vision-card {
-  position: relative;
-  overflow: hidden;
-  border: 1px solid transparent;
-  transition: all 0.3s ease;
-  color: #e8f2ec;
-  display: flex;
+.about-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #a8bdb3;
 }
 
-.mission-card {
+.card-custom-dark {
+  background: #1a2421;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Icons */
+.icon-wrapper {
+  width: 60px;
+  height: 60px;
+  background: rgba(46, 163, 95, 0.16);
+  border: 1px solid rgba(46, 163, 95, 0.35);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.mission-card:hover .icon-wrapper,
+.vision-card:hover .icon-wrapper {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.icon-main {
+  font-size: 1.8rem;
+  color: #2ea35f;
+}
+
+.icon-alt {
+  font-size: 1.8rem;
+  color: #f8a116;
+}
+
+.mission-vision-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   background: linear-gradient(
     135deg,
     rgba(46, 163, 95, 0.12),
     rgba(26, 36, 33, 0.96)
   );
-  border-color: rgba(46, 163, 95, 0.28);
+  border: 1px solid rgba(46, 163, 95, 0.28);
+  color: #e8f2ec;
 }
 
 .vision-card {
@@ -52,65 +92,199 @@
 }
 
 .mission-vision-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.22);
 }
 
-/* ===== Icons ===== */
-.icon-wrapper {
-  width: 50px;
-  height: 50px;
+/* Why Zytonaa */
+.why-section {
+  background: #1a2421; /* Dark card background */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.feature-item {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.feature-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-3px);
+  border-color: rgba(46, 163, 95, 0.3);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.feature-item h6 {
+  color: #e8f2ec;
+  margin-top: 10px;
+}
+
+/* Products Styles */
+.product-item {
+  background-color: #1a2421;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.product-item:hover {
+  transform: translateY(-5px);
+  border-color: #2ea35f !important;
+  box-shadow: 0 10px 30px rgba(46, 163, 95, 0.15);
+}
+
+.product-img-wrapper {
+  position: relative;
+  height: 200px;
+  background-color: #fff; /* White bg for product images usually looks best */
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 14px;
-  background: rgba(46, 163, 95, 0.16);
-  border: 1px solid rgba(46, 163, 95, 0.35);
 }
 
-.icon-main {
-  font-size: 1.5rem;
+.product-img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  transition: transform 0.5s ease;
+  padding: 10px;
+}
+
+.product-item:hover .product-img {
+  transform: scale(1.08);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(46, 163, 95, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.product-item:hover .overlay {
+  opacity: 1;
+}
+
+.card-title {
+  color: #e8f2ec;
+  font-size: 1rem;
+}
+
+/* Usage Areas */
+.usage-item {
+  background: linear-gradient(
+    135deg,
+    rgba(46, 163, 95, 0.2),
+    rgba(26, 36, 33, 0.8)
+  );
+  border: 1px solid rgba(46, 163, 95, 0.25);
+  padding: 2rem;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #e8f2ec;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.usage-item:hover {
+  transform: scale(1.03);
+  border-color: #2ea35f;
+  background: linear-gradient(
+    135deg,
+    rgba(46, 163, 95, 0.3),
+    rgba(26, 36, 33, 0.9)
+  );
+}
+
+.usage-item i {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
   color: #2ea35f;
 }
 
-.icon-wrapper-alt {
-  background: rgba(248, 161, 22, 0.16);
-  border-color: rgba(248, 161, 22, 0.35);
+/* Quality */
+.quality-box {
+  background: radial-gradient(circle at top right, #1f2e29, #151a18);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.icon-alt {
-  font-size: 1.5rem;
-  color: #f8a116;
+.quality-list i {
+  background: rgba(46, 163, 95, 0.15);
+  padding: 5px;
+  border-radius: 50%;
 }
 
-/* ===== Text Utilities ===== */
-.lead-muted {
-  color: #c2cec7;
-  font-size: 0.95rem;
+/* Contact Strip */
+.contact-strip {
+  background: linear-gradient(to right, #1b4332, #2d6a4f);
+  border: 1px solid rgba(46, 163, 95, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-/* ===== Responsive Tweaks ===== */
-@media (max-width: 767.98px) {
-  .about-section {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+/* Simple Animation Classes */
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
+/* PDF Modal */
+.pdf-frame {
+  width: 100%;
+  height: 75vh;
+  display: block;
+  border: none;
+}
+
+/* Overrides for text contrast */
+.text-muted {
+  color: #a8bdb3 !important;
+}
+
+.text-dark {
+  color: #e8f2ec !important;
+}
+
+/* Responsive Adjustments (remaining custom ones) */
+@media (max-width: 768px) {
   .section-title {
     font-size: 1.5rem;
   }
 
-  .card-zy {
-    padding: 1.5rem !important;
+  .display-4 {
+    font-size: 2rem;
   }
 
-  .mission-vision-card {
-    padding: 1.1rem !important;
+  .product-img-wrapper {
+    height: 180px;
   }
-}
 
-@media (min-width: 992px) {
-  .card-zy {
-    padding: 3rem 3.2rem !important;
+  .pdf-frame {
+    height: 60vh;
   }
 }
