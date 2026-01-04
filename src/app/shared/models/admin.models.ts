@@ -1,8 +1,11 @@
 export interface Category {
-  id?: string;
+  id?: any;
   name: string;
-  img: string;
-  size: 'large' | 'small';
+  img?: string;
+  imageUrl?: string;
+  size: string;
+  displayOrder?: number;
+  isActive?: boolean;
 }
 
 export interface Product {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AdminService } from '../../../shared/services/admin.service';
+import { PdfService } from '../../../shared/services/pdf.service';
 import { PdfFile } from '../../../shared/models/admin.models';
 
 @Component({
@@ -22,15 +22,22 @@ export class AdminPdfsComponent implements OnInit {
     path: '',
   };
 
-  constructor(private adminService: AdminService) {}
+  selectedFile: File | null = null;
 
-  ngOnInit(): void {
+  constructor(private pdfService: PdfService) {}
+
+  ngOnInit(): void {  
     this.loadPdfs();
   }
 
   loadPdfs(): void {
-    this.adminService.getPdfFiles().subscribe((pdfs) => {
-      this.pdfFiles = pdfs;
+    this.pdfService.getPdfs().subscribe({
+      next: (pdfs) => {
+        this.pdfFiles = pdfs;
+      },
+      error: (err) => {
+        console.error('Error fetching pdfs:', err);
+      },
     });
   }
 
@@ -56,6 +63,7 @@ export class AdminPdfsComponent implements OnInit {
   onFileSelect(event: any): void {
     const file = event.target.files[0];
     if (file && file.type === 'application/pdf') {
+      this.selectedFile = file;
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.formData.path = e.target.result;
@@ -67,24 +75,54 @@ export class AdminPdfsComponent implements OnInit {
   }
 
   savePdf(): void {
-    if (!this.formData.name || !this.formData.path) {
+    if (!this.formData.name || (!this.selectedFile && !this.editMode)) {
       alert('الرجاء ملء جميع الحقول واختيار ملف PDF');
       return;
     }
 
-    if (this.editMode && this.selectedPdf?.id) {
-      this.adminService.updatePdfFile(this.selectedPdf.id, this.formData);
-    } else {
-      this.adminService.addPdfFile(this.formData);
+    const formData = new FormData();
+    formData.append('Name', this.formData.name);
+    if (this.selectedFile) {
+      formData.append('File', this.selectedFile);
     }
 
-    this.closeModal();
+    if (this.editMode && this.selectedPdf?.id) {
+      this.pdfService.updatePdf(this.selectedPdf.id, formData).subscribe({
+        next: () => {
+          this.loadPdfs();
+          this.closeModal();
+        },
+        error: (err) => {
+          console.error('Error updating pdf', err);
+          alert('حدث خطأ أثناء تحديث ملف PDF');
+        },
+      });
+    } else {
+      this.pdfService.createPdf(formData).subscribe({
+        next: () => {
+          this.loadPdfs();
+          this.closeModal();
+        },
+        error: (err) => {
+          console.error('Error creating pdf', err);
+          alert('حدث خطأ أثناء إضافة ملف PDF');
+        },
+      });
+    }
   }
 
   deletePdf(pdf: PdfFile): void {
     if (confirm(`هل أنت متأكد من حذف ملف "${pdf.name}"؟`)) {
       if (pdf.id) {
-        this.adminService.deletePdfFile(pdf.id);
+        this.pdfService.deletePdf(pdf.id).subscribe({
+          next: () => {
+            this.loadPdfs();
+          },
+          error: (err) => {
+            console.error('Error deleting pdf', err);
+            alert('حدث خطأ أثناء حذف ملف PDF');
+          },
+        });
       }
     }
   }

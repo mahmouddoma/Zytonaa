@@ -17,7 +17,7 @@
   <div class="categories-grid">
     <div class="category-card" *ngFor="let category of categories">
       <div class="category-image">
-        <img [src]="category.img" [alt]="category.name" />
+        <img [src]="category.imageUrl || category.img" [alt]="category.name" />
         <span class="size-badge" [class]="category.size">{{
           category.size === "large" ? "كبير" : "صغير"
         }}</span>

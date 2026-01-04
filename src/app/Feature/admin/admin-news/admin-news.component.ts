@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AdminService } from '../../../shared/services/admin.service';
+import { NewsService } from '../../../shared/services/news.service';
 import { StorageService } from '../../../shared/services/storage.service';
 import { NewsArticle } from '../../../shared/models/admin.models';
 
@@ -26,8 +26,10 @@ export class AdminNewsComponent implements OnInit {
     author: 'المدير',
   };
 
+  selectedFile: File | null = null;
+
   constructor(
-    private adminService: AdminService,
+    private newsService: NewsService,
     private storageService: StorageService
   ) {}
 
@@ -36,11 +38,17 @@ export class AdminNewsComponent implements OnInit {
   }
 
   loadNews(): void {
-    this.adminService.getNewsArticles().subscribe((news) => {
-      this.newsArticles = news.sort(
-        (a, b) =>
-          new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime()
-      );
+    this.newsService.getNews().subscribe({
+      next: (news) => {
+        this.newsArticles = news.sort(
+          (a, b) =>
+            new Date(b.publishDate).getTime() -
+            new Date(a.publishDate).getTime()
+        );
+      },
+      error: (err) => {
+        console.error('Error fetching news:', err);
+      },
     });
   }
 
@@ -72,6 +80,7 @@ export class AdminNewsComponent implements OnInit {
   async onImageSelect(event: any): Promise<void> {
     const file = event.target.files[0];
     if (file) {
+      this.selectedFile = file;
       try {
         this.formData.image = await this.storageService.imageToBase64(file);
       } catch (error) {
@@ -85,28 +94,59 @@ export class AdminNewsComponent implements OnInit {
     if (
       !this.formData.title ||
       !this.formData.content ||
-      !this.formData.image
+      (!this.selectedFile && !this.editMode)
     ) {
       alert('الرجاء ملء جميع الحقول واختيار صورة');
       return;
     }
 
-    if (this.editMode && this.selectedArticle?.id) {
-      this.adminService.updateNewsArticle(
-        this.selectedArticle.id,
-        this.formData
-      );
-    } else {
-      this.adminService.addNewsArticle(this.formData);
+    const formData = new FormData();
+    formData.append('Title', this.formData.title);
+    formData.append('Content', this.formData.content);
+    if (this.formData.author) {
+      formData.append('Author', this.formData.author);
+    }
+    if (this.selectedFile) {
+      formData.append('Image', this.selectedFile);
     }
 
-    this.closeModal();
+    if (this.editMode && this.selectedArticle?.id) {
+      this.newsService.updateNews(this.selectedArticle.id, formData).subscribe({
+        next: () => {
+          this.loadNews();
+          this.closeModal();
+        },
+        error: (err) => {
+          console.error('Error updating news', err);
+          alert('حدث خطأ أثناء تحديث الخبر');
+        },
+      });
+    } else {
+      this.newsService.createNews(formData).subscribe({
+        next: () => {
+          this.loadNews();
+          this.closeModal();
+        },
+        error: (err) => {
+          console.error('Error creating news', err);
+          alert('حدث خطأ أثناء إضافة الخبر');
+        },
+      });
+    }
   }
 
   deleteArticle(article: NewsArticle): void {
     if (confirm(`هل أنت متأكد من حذف المقال "${article.title}"؟`)) {
       if (article.id) {
-        this.adminService.deleteNewsArticle(article.id);
+        this.newsService.deleteNews(article.id).subscribe({
+          next: () => {
+            this.loadNews();
+          },
+          error: (err) => {
+            console.error('Error deleting news', err);
+            alert('حدث خطأ أثناء حذف الخبر');
+          },
+        });
       }
     }
   }

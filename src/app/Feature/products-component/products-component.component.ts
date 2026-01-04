@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { AdminService } from '../../shared/services/admin.service';
+import { ProductService } from '../../shared/services/product.service';
 import { Product } from '../../shared/models/admin.models';
 
 @Component({
@@ -16,11 +16,16 @@ export class ProductsComponentComponent implements OnInit {
   title = 'منتجاتنا السبع المميزة';
   subtitle = 'اكتشف مجموعتنا المختارة من أفضل الأسمدة والمخصبات الزراعية.';
 
-  constructor(private adminService: AdminService) {}
+  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.adminService.getProducts().subscribe((prods) => {
-      this.products = prods;
+    this.productService.getProducts().subscribe({
+      next: (prods) => {
+        this.products = prods;
+      },
+      error: (err) => {
+        console.error('Error fetching products:', err);
+      },
     });
   }
 

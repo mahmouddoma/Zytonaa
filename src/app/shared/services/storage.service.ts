@@ -6,37 +6,49 @@ import { Injectable } from '@angular/core';
 export class StorageService {
   constructor() {}
 
-   setItem<T>(key: string, value: T): void {
-    try {
-      const jsonValue = JSON.stringify(value);
-      localStorage.setItem(key, jsonValue);
-    } catch (error) {
-      console.error('Error saving to localStorage:', error);
+  setItem<T>(key: string, value: T): void {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      try {
+        const jsonValue = JSON.stringify(value);
+        localStorage.setItem(key, jsonValue);
+      } catch (error) {
+        console.error('Error saving to localStorage:', error);
+      }
     }
   }
 
-   getItem<T>(key: string): T | null {
-    try {
-      const jsonValue = localStorage.getItem(key);
-      if (jsonValue) {
-        return JSON.parse(jsonValue) as T;
+  getItem<T>(key: string): T | null {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      try {
+        const jsonValue = localStorage.getItem(key);
+        if (jsonValue) {
+          return JSON.parse(jsonValue) as T;
+        }
+        return null;
+      } catch (error) {
+        console.error('Error reading from localStorage:', error);
+        return null;
       }
-      return null;
-    } catch (error) {
-      console.error('Error reading from localStorage:', error);
-      return null;
     }
+    return null;
   }
 
   removeItem(key: string): void {
-    localStorage.removeItem(key);
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.removeItem(key);
+    }
   }
   clear(): void {
-    localStorage.clear();
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.clear();
+    }
   }
 
   hasItem(key: string): boolean {
-    return localStorage.getItem(key) !== null;
+    if (typeof window !== 'undefined' && window.localStorage) {
+      return localStorage.getItem(key) !== null;
+    }
+    return false;
   }
   async imageToBase64(file: File): Promise<string> {
     return new Promise((resolve, reject) => {

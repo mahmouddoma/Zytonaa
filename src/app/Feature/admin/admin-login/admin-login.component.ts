@@ -26,13 +26,22 @@ export class AdminLoginComponent {
       return;
     }
 
-    const success = this.authService.login(this.username, this.password);
+    const loginData = {
+      username: this.username,
+      password: this.password,
+    };
 
-    if (success) {
-      this.router.navigate(['/admin']);
-    } else {
-      this.errorMessage = 'اسم المستخدم أو كلمة المرور غير صحيحة';
-      this.password = '';
-    }
+    this.authService.login(loginData).subscribe({
+      next: (response) => {
+        if (response) {
+          this.router.navigate(['/admin']);
+        }
+      },
+      error: (err) => {
+        console.error('Login error:', err);
+        this.errorMessage = 'اسم المستخدم أو كلمة المرور غير صحيحة';
+        this.password = '';
+      },
+    });
   }
 }

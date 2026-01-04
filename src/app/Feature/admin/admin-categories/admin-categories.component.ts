@@ -5,6 +5,8 @@ import { AdminService } from '../../../shared/services/admin.service';
 import { StorageService } from '../../../shared/services/storage.service';
 import { Category } from '../../../shared/models/admin.models';
 
+import { CategoryService } from '../../../shared/services/category.service';
+
 @Component({
   selector: 'app-admin-categories',
   standalone: true,
@@ -26,6 +28,7 @@ export class AdminCategoriesComponent implements OnInit {
 
   constructor(
     private adminService: AdminService,
+    private categoryService: CategoryService,
     private storageService: StorageService
   ) {}
 
@@ -34,8 +37,13 @@ export class AdminCategoriesComponent implements OnInit {
   }
 
   loadCategories(): void {
-    this.adminService.getCategories().subscribe((cats) => {
-      this.categories = cats;
+    this.categoryService.getCategories().subscribe({
+      next: (cats) => {
+        this.categories = cats;
+      },
+      error: (err) => {
+        console.error('Error fetching categories:', err);
+      },
     });
   }
 
@@ -62,9 +70,12 @@ export class AdminCategoriesComponent implements OnInit {
     this.selectedCategory = null;
   }
 
+  selectedFile: File | null = null;
+
   async onImageSelect(event: any): Promise<void> {
     const file = event.target.files[0];
     if (file) {
+      this.selectedFile = file;
       try {
         this.formData.img = await this.storageService.imageToBase64(file);
       } catch (error) {
@@ -75,24 +86,57 @@ export class AdminCategoriesComponent implements OnInit {
   }
 
   saveCategory(): void {
-    if (!this.formData.name || !this.formData.img) {
+    if (!this.formData.name || (!this.selectedFile && !this.editMode)) {
       alert('الرجاء ملء جميع الحقول واختيار صورة');
       return;
     }
 
-    if (this.editMode && this.selectedCategory?.id) {
-      this.adminService.updateCategory(this.selectedCategory.id, this.formData);
-    } else {
-      this.adminService.addCategory(this.formData);
+    const formData = new FormData();
+    formData.append('Name', this.formData.name);
+    formData.append('Size', this.formData.size);
+    if (this.selectedFile) {
+      formData.append('Image', this.selectedFile);
     }
 
-    this.closeModal();
+    if (this.editMode && this.selectedCategory?.id) {
+      this.categoryService
+        .updateCategory(this.selectedCategory.id, formData)
+        .subscribe({
+          next: (res) => {
+            this.loadCategories();
+            this.closeModal();
+          },
+          error: (err) => {
+            console.error('Error updating category', err);
+            alert('حدث خطأ أثناء تحديث الفئة');
+          },
+        });
+    } else {
+      this.categoryService.createCategory(formData).subscribe({
+        next: (res) => {
+          this.loadCategories();
+          this.closeModal();
+        },
+        error: (err) => {
+          console.error('Error creating category', err);
+          alert('حدث خطأ أثناء إضافة الفئة');
+        },
+      });
+    }
   }
 
   deleteCategory(category: Category): void {
     if (confirm(`هل أنت متأكد من حذف الفئة "${category.name}"؟`)) {
       if (category.id) {
-        this.adminService.deleteCategory(category.id);
+        this.categoryService.deleteCategory(category.id).subscribe({
+          next: () => {
+            this.loadCategories();
+          },
+          error: (err) => {
+            console.error('Error deleting category', err);
+            alert('حدث خطأ أثناء حذف الفئة');
+          },
+        });
       }
     }
   }

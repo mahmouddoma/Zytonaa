@@ -1,0 +1,48 @@
+<div class="weather-container">
+  <div class="header-row">
+    <h2 class="page-title">توقعات الطقس</h2>
+    <button class="refresh-btn" (click)="loadWeather()" [disabled]="loading">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M21.5 2V8M21.5 8H15.5M21.5 8L18.3 4.8C17.0429 3.5431 15.4763 2.62064 13.7518 2.12293C12.0272 1.62521 10.2041 1.57021 8.45388 1.96413C6.70368 2.35805 5.08467 3.18736 3.75956 4.37402C2.43444 5.56067 1.44874 7.06674 0.9 8.73"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <path
+          d="M2.5 22V16M2.5 16H8.5M2.5 16L5.7 19.2C6.95706 20.4569 8.52369 21.3794 10.2482 21.8771C11.9728 22.3748 13.7959 22.4298 15.5461 22.0359C17.2963 21.642 18.9153 20.8126 20.2404 19.626C21.5656 18.4393 22.5513 16.9333 23.1 15.27"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
+      <span *ngIf="!loading">تحديث</span>
+      <span *ngIf="loading">جاري التحميل...</span>
+    </button>
+  </div>
+
+  <div class="error-message" *ngIf="error">
+    {{ error }}
+  </div>
+
+  <div class="weather-grid" *ngIf="!loading && !error">
+    <div class="weather-card" *ngFor="let forecast of weatherData">
+      <div class="weather-header">
+        <h3>{{ forecast.date | date : "EEE, MMM d" }}</h3>
+        <span class="summary">{{ forecast.summary }}</span>
+      </div>
+      <div class="weather-temp">
+        <div class="temp-value">
+          <span class="temp-c">{{ forecast.temperatureC }}°C</span>
+          <span class="temp-divider">|</span>
+          <span class="temp-f">{{ forecast.temperatureF }}°F</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="loading-spinner" *ngIf="loading">
+    <div class="spinner"></div>
+    <p>جاري تحميل بيانات الطقس...</p>
+  </div>
+</div>
