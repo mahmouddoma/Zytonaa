@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CategoryService } from '../../shared/services/category.service';
-import { Category } from '../../shared/models/admin.models';
+import { CategoryService } from '../../shared/services/category/category.service';
+import { Category } from '../../shared/models/admin/admin.models';
 
 @Component({
   selector: 'app-home-component',

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ProductService } from '../../../shared/services/product.service';
-import { StorageService } from '../../../shared/services/storage.service';
-import { Product } from '../../../shared/models/admin.models';
+import { ProductService } from '../../../shared/services/product/product.service';
+import { StorageService } from '../../../shared/services/storage/storage.service';
+import { Product } from '../../../shared/models/admin/admin.models';
 
 @Component({
   selector: 'app-admin-products',

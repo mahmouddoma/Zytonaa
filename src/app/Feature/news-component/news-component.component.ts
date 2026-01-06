@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NewsService } from '../../shared/services/news.service';
-import { NewsArticle } from '../../shared/models/admin.models';
+import { NewsService } from '../../shared/services/news/news.service';
+import { NewsArticle } from '../../shared/models/admin/admin.models';
 
 @Component({
   selector: 'app-news-component',

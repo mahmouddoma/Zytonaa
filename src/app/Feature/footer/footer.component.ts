@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { ContentService } from '../../shared/content.service';
+import { ContentService } from '../../shared/services/content/content.service';
 
 @Component({
   selector: 'app-footer',

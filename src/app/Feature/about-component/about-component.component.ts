@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { AdminService } from '../../shared/services/admin.service';
-import { PdfFile } from '../../shared/models/admin.models';
+import { AdminService } from '../../shared/services/admin/admin.service';
+import { PdfFile } from '../../shared/models/admin/admin.models';
 
 @Component({
   selector: 'app-about-component',

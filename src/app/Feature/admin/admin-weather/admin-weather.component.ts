@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import {
   WeatherService,
   WeatherForecast,
-} from '../../../shared/services/weather.service';
+} from '../../../shared/services/weather/weather.service';
 
 @Component({
   selector: 'app-admin-weather',

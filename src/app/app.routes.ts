@@ -41,6 +41,14 @@ export const routes: Routes = [
     title: 'تسجيل دخول المدير — زيتونة',
   },
   {
+    path: 'admin/change-password',
+    loadComponent: () =>
+      import(
+        './Feature/admin/admin-change-password/admin-change-password.component'
+      ).then((m) => m.AdminChangePasswordComponent),
+    title: 'تغيير كلمة المرور — زيتونة',
+  },
+  {
     path: 'admin',
     loadComponent: () =>
       import('./Feature/admin/admin-dashboard/admin-dashboard.component').then(
@@ -89,6 +97,14 @@ export const routes: Routes = [
             (m) => m.AdminPdfsComponent
           ),
         title: 'إدارة ملفات PDF — لوحة التحكم',
+      },
+      {
+        path: 'info',
+        loadComponent: () =>
+          import('./Feature/admin/admin-info/admin-info.component').then(
+            (m) => m.AdminInfoComponent
+          ),
+        title: 'إدارة المعلومات — لوحة التحكم',
       },
     ],
   },

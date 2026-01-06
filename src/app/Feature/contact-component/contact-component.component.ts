@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ContentService } from '../../shared/content.service';
-import { ContactMailService } from '../../shared/contact-mail.service';
+import { ContentService } from '../../shared/services/content/content.service';
+import { ContactMailService } from '../../shared/services/contact-mail/contact-mail.service';
 
 interface ContactInfo {
   address: string;
@@ -25,11 +25,13 @@ export class ContactComponentComponent {
   mapUrl = '';
 
   labels = { name: 'الاسم', email: 'البريد الإلكتروني', message: 'الرسالة' };
+
   placeholders = {
     name: 'الاسم الكامل',
     email: 'name@example.com',
     message: 'اكتب رسالتك هنا...',
   };
+
   buttons = { send: 'إرسال', cancel: 'إلغاء' };
   successMessage = 'تم إرسال رسالتك، سنعاود التواصل قريبًا.';
   isSending = false;

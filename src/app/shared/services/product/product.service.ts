@@ -1,54 +1,58 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
-export class PdfService {
+export class ProductService {
   private http = inject(HttpClient);
 
-  getPdfs(): Observable<any[]> {
-    return this.http.get<any[]>(`${environment.apiUrl}/Pdfs`);
+  getProducts(): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.apiUrl}/Products`);
   }
 
-  createPdf(formData: FormData): Observable<any> {
+  createProduct(formData: FormData): Observable<any> {
     const token = this.getToken();
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return this.http.post<any>(`${environment.apiUrl}/Pdfs`, formData, {
+    return this.http.post<any>(`${environment.apiUrl}/Products`, formData, {
       headers,
     });
   }
 
-  getPdfById(id: any): Observable<any> {
+  getProductById(id: any): Observable<any> {
     const token = this.getToken();
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return this.http.get<any>(`${environment.apiUrl}/Pdfs/${id}`, {
+    return this.http.get<any>(`${environment.apiUrl}/Products/${id}`, {
       headers,
     });
   }
 
-  updatePdf(id: any, formData: FormData): Observable<any> {
+  updateProduct(id: any, formData: FormData): Observable<any> {
     const token = this.getToken();
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return this.http.put<any>(`${environment.apiUrl}/Pdfs/${id}`, formData, {
-      headers,
-    });
+    return this.http.put<any>(
+      `${environment.apiUrl}/Products/${id}`,
+      formData,
+      {
+        headers,
+      }
+    );
   }
 
-  deletePdf(id: any): Observable<any> {
+  deleteProduct(id: any): Observable<any> {
     const token = this.getToken();
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return this.http.delete<any>(`${environment.apiUrl}/Pdfs/${id}`, {
+    return this.http.delete<any>(`${environment.apiUrl}/Products/${id}`, {
       headers,
     });
   }

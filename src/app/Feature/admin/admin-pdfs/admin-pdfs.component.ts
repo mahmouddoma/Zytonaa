@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { PdfService } from '../../../shared/services/pdf.service';
-import { PdfFile } from '../../../shared/models/admin.models';
+import { PdfService } from '../../../shared/services/pdf/pdf.service';
+import { PdfFile } from '../../../shared/models/admin/admin.models';
 
 @Component({
   selector: 'app-admin-pdfs',
@@ -26,7 +26,7 @@ export class AdminPdfsComponent implements OnInit {
 
   constructor(private pdfService: PdfService) {}
 
-  ngOnInit(): void {  
+  ngOnInit(): void {
     this.loadPdfs();
   }
 

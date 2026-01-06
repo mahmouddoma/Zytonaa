@@ -1,10 +1,16 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map } from 'rxjs';
-import { StorageService } from './storage.service';
+import { StorageService } from '../storage/storage.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
+import {
+  LoginRequest,
+  LoginResponse,
+  ChangeInitialPasswordRequest,
+  ChangeInitialPasswordResponse,
+} from '../../models/auth/auth.models';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +19,9 @@ export class AuthService {
   private readonly AUTH_KEY = 'auth_token';
   private readonly REFRESH_TOKEN_KEY = 'auth_refresh_token';
   private readonly USER_KEY = 'auth_user';
+  private readonly ROLE_KEY = 'auth_role';
+  private readonly PERMISSIONS_KEY = 'auth_permissions';
+  private readonly REQUIRES_PASSWORD_CHANGE_KEY = 'requires_password_change';
 
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
   public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
@@ -32,26 +41,31 @@ export class AuthService {
     return false;
   }
 
-  login(data: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiUrl}/Auth/login`, data).pipe(
-      map((response) => {
-        if (response && response.token) {
-          this.storageService.setItem(this.AUTH_KEY, response.token);
-          if (response.refreshToken) {
+  login(data: LoginRequest): Observable<LoginResponse> {
+    return this.http
+      .post<LoginResponse>(`${environment.apiUrl}/Auth/Login`, data)
+      .pipe(
+        map((response) => {
+          if (response && response.token) {
+            // Store the actual JWT token
+            this.storageService.setItem(this.AUTH_KEY, response.token.token);
+            // Store role and permissions
+            this.storageService.setItem(this.ROLE_KEY, response.token.roleName);
             this.storageService.setItem(
-              this.REFRESH_TOKEN_KEY,
-              response.refreshToken
+              this.PERMISSIONS_KEY,
+              JSON.stringify(response.token.permissions)
             );
+            // Store password change requirement flag
+            this.storageService.setItem(
+              this.REQUIRES_PASSWORD_CHANGE_KEY,
+              response.requiresPasswordChange.toString()
+            );
+            this.isAuthenticatedSubject.next(true);
+            return response;
           }
-          if (response.user) {
-            this.storageService.setItem(this.USER_KEY, response.user);
-          }
-          this.isAuthenticatedSubject.next(true);
-          return response;
-        }
-        return null;
-      })
-    );
+          throw new Error('Invalid login response');
+        })
+      );
   }
 
   refreshToken(): Observable<any> {
@@ -97,6 +111,28 @@ export class AuthService {
     );
   }
 
+  changeInitialPassword(
+    data: ChangeInitialPasswordRequest
+  ): Observable<ChangeInitialPasswordResponse> {
+    const token = this.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http
+      .post<ChangeInitialPasswordResponse>(
+        `${environment.apiUrl}/Auth/change-initial-password`,
+        data,
+        { headers }
+      )
+      .pipe(
+        map((response) => {
+          // Clear the password change requirement flag on success
+          this.storageService.removeItem(this.REQUIRES_PASSWORD_CHANGE_KEY);
+          return response;
+        })
+      );
+  }
+
   logout(): void {
     const refreshToken = this.storageService.getItem(this.REFRESH_TOKEN_KEY);
     if (refreshToken) {
@@ -115,6 +151,9 @@ export class AuthService {
     this.storageService.removeItem(this.AUTH_KEY);
     this.storageService.removeItem(this.REFRESH_TOKEN_KEY);
     this.storageService.removeItem(this.USER_KEY);
+    this.storageService.removeItem(this.ROLE_KEY);
+    this.storageService.removeItem(this.PERMISSIONS_KEY);
+    this.storageService.removeItem(this.REQUIRES_PASSWORD_CHANGE_KEY);
     this.isAuthenticatedSubject.next(false);
     this.router.navigate(['/admin/login']);
   }
@@ -125,5 +164,26 @@ export class AuthService {
 
   getToken(): string | null {
     return this.storageService.getItem(this.AUTH_KEY);
+  }
+
+  getRole(): string | null {
+    return this.storageService.getItem(this.ROLE_KEY);
+  }
+
+  getPermissions(): string[] {
+    const permissions = this.storageService.getItem<string>(
+      this.PERMISSIONS_KEY
+    );
+    if (!permissions) return [];
+    try {
+      return JSON.parse(permissions);
+    } catch {
+      return [];
+    }
+  }
+
+  requiresPasswordChange(): boolean {
+    const flag = this.storageService.getItem(this.REQUIRES_PASSWORD_CHANGE_KEY);
+    return flag === 'true';
   }
 }

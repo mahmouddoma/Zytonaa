@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NewsService } from '../../../shared/services/news.service';
-import { StorageService } from '../../../shared/services/storage.service';
-import { NewsArticle } from '../../../shared/models/admin.models';
+import { NewsService } from '../../../shared/services/news/news.service';
+import { StorageService } from '../../../shared/services/storage/storage.service';
+import { NewsArticle } from '../../../shared/models/admin/admin.models';
 
 @Component({
   selector: 'app-admin-news',

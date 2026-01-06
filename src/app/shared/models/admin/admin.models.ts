@@ -35,3 +35,25 @@ export interface AdminUser {
   username: string;
   password: string;
 }
+
+export interface AddressDto {
+  line1: string;
+  line2?: string;
+  city: string;
+  state: string;
+  isPrimary: boolean;
+}
+
+export interface PhoneDto {
+  number: string;
+  isPrimary: boolean;
+}
+
+export interface MainInfo {
+  name: string;
+  whoWeAre: string;
+  purpose: string;
+  logo?: File;
+  addresses: AddressDto[];
+  phones: PhoneDto[];
+}

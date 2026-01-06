@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AdminService } from '../../../shared/services/admin.service';
-import { StorageService } from '../../../shared/services/storage.service';
-import { Category } from '../../../shared/models/admin.models';
+import { AdminService } from '../../../shared/services/admin/admin.service';
+import { StorageService } from '../../../shared/services/storage/storage.service';
+import { Category } from '../../../shared/models/admin/admin.models';
 
-import { CategoryService } from '../../../shared/services/category.service';
+import { CategoryService } from '../../../shared/services/category/category.service';
 
 @Component({
   selector: 'app-admin-categories',

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
-import { AuthService } from '../../../shared/services/auth.service';
-import { AdminService } from '../../../shared/services/admin.service';
+import { AuthService } from '../../../shared/services/auth/auth.service';
+import { AdminService } from '../../../shared/services/admin/admin.service';
 
 @Component({
   selector: 'app-admin-dashboard',

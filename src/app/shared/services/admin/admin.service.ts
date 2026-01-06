@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { StorageService } from './storage.service';
+import { StorageService } from '../storage/storage.service';
 import {
   Category,
   Product,
   NewsArticle,
   PdfFile,
-} from '../models/admin.models';
+} from '../../models/admin/admin.models';
 
 @Injectable({
   providedIn: 'root',

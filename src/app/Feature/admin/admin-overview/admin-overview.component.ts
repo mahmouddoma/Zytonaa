@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdminService } from '../../../shared/services/admin.service';
+import { AdminService } from '../../../shared/services/admin/admin.service';
 
 @Component({
   selector: 'app-admin-overview',
